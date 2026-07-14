@@ -89,6 +89,12 @@ export default function Login({ onLoginSuccess }) {
               </div>
             )}
 
+            {loading && (
+              <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-[10px] text-amber-400 font-medium text-center animate-pulse">
+                Waking up the cloud server... Render's Free Tier cold-start can take up to 60 seconds. Please keep this tab open!
+              </div>
+            )}
+
             <div>
               <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Email Address</label>
               <input
