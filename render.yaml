@@ -1,0 +1,31 @@
+services:
+  # 1. Backend Express Node.js Web Service
+  - type: web
+    name: ethara-backend
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        value: mongodb+srv://harshvardhanjmt1807:Harsh2005@cluster0.r2ci0uh.mongodb.net/?appName=Cluster0
+      - key: JWT_SECRET
+        value: ethara_jwt_secret_token_secure_key_12345
+      - key: GEMINI_API_KEY
+        value: ""
+
+  # 2. Frontend React Vite Static Site
+  - type: web
+    name: ethara-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
