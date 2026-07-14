@@ -24,7 +24,7 @@ services:
     runtime: static
     plan: free
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: ./frontend/dist
+    publishPath: ./frontend/dist
     routes:
       - type: rewrite
         source: /*
