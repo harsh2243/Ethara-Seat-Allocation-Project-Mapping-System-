@@ -75,10 +75,10 @@ export default function App() {
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
       {/* Sidebar Navigation */}
-      <aside className="hidden md:flex flex-col w-64 bg-[#0B0F19] border-r border-slate-800">
+      <aside className="hidden md:flex flex-col w-64 bg-ethara-dark border-r border-slate-800">
         {/* Brand Header */}
         <div className="p-6 border-b border-slate-800 flex items-center gap-3">
-          <div className="h-9 w-9 bg-gradient-to-tr from-indigo-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
+          <div className="h-9 w-9 bg-linear-to-tr from-indigo-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
             <Activity className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -154,7 +154,7 @@ export default function App() {
       {/* Main Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Header Panel (Responsive Mobile Navigation) */}
-        <header className="md:hidden flex justify-between items-center bg-[#0B0F19] px-6 py-4 border-b border-slate-800">
+        <header className="md:hidden flex justify-between items-center bg-ethara-dark px-6 py-4 border-b border-slate-800">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 bg-indigo-600 rounded-lg flex items-center justify-center">
               <Activity className="h-4.5 w-4.5 text-white" />

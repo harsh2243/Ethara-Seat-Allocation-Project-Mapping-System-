@@ -68,7 +68,7 @@ export default function Login({ onLoginSuccess }) {
       <div className="w-full max-w-md space-y-6">
         {/* Brand Banner */}
         <div className="text-center space-y-2">
-          <div className="mx-auto h-12 w-12 bg-gradient-to-tr from-indigo-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl shadow-indigo-600/20">
+          <div className="mx-auto h-12 w-12 bg-linear-to-tr from-indigo-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl shadow-indigo-600/20">
             <Sparkles className="h-6 w-6 text-white animate-pulse" />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-white mt-4">Ethara Space</h2>

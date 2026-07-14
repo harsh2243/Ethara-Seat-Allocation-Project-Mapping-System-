@@ -159,7 +159,7 @@ export default function SeatMap({ user, quickAllocationEmployee, setQuickAllocat
     <div className="space-y-6">
       {/* Quick Allocation Banner */}
       {quickAllocationEmployee && (
-        <div className="bg-gradient-to-r from-amber-500/10 to-indigo-500/10 border border-indigo-500/20 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="bg-linear-to-r from-amber-500/10 to-indigo-500/10 border border-indigo-500/20 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-start gap-3">
             <div className="p-2.5 bg-indigo-500/20 text-indigo-400 rounded-xl">
               <Sparkles className="h-5 w-5 animate-spin" style={{ animationDuration: '3s' }} />

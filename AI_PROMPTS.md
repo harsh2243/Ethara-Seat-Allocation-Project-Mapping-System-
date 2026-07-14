@@ -76,6 +76,10 @@ This document details the prompts used to structure, build, and debug the **Etha
 > 2. Add an Axios request interceptor in `api.js` to automatically attach stored JWT tokens to API request headers.
 > 3. Update `App.jsx`, `Dashboard.jsx`, `SeatMap.jsx`, and `EmployeeList.jsx` to dynamically hide/disable booking actions, deactivation buttons, and onboarding modals for standard Employee logins, while revealing seat status controls (Available/Reserved/Maintenance) for Admin logins."
 
+### Prompt 10 – Tailwind CSS v4 & Build Compatibility Debugging
+> **Prompt:**
+> "My build is crashing on Vercel with PostCSS load errors, and Tailwind CSS v4 directives (like @apply and @theme) are not working, rendering the website without styles. How do I fix the peer dependency warnings and build errors under Vite?"
+
 ---
 
 ## 2. AI Code Generation Assessment
@@ -89,21 +93,18 @@ This document details the prompts used to structure, build, and debug the **Etha
 ### What AI Generated Incorrectly
 1. **Dependency Out-of-Sync**: The AI controller referenced `axios` for external Gemini connections, but it was not added to the backend `package.json` dependencies.
 2. **Dynamic Imports in Vite**: Dynamic imports of API service functions inside `Dashboard.jsx` and `SeatMap.jsx` triggered `INEFFECTIVE_DYNAMIC_IMPORT` warnings during production compiling.
-3. **Mongoose Pre-Save Callback**: The password hashing hook was written as `pre('save', async function(next) { ... next(); })`. Under modern Mongoose versions, mixing `async/await` with the `next` callback parameter caused a runtime `TypeError: next is not a function` crash during test saves.
+3. **Tailwind v4 Silent Failures on Vite 8**: The Vite project was scaffolding with the bleeding-edge Vite v8. Vite v8 uses the new Rolldown compiler, which is incompatible with `@tailwindcss/vite`'s peer dependency limits. This caused Tailwind compiler hooks to fail silently, resulting in uncompiled `@apply`, `@theme`, and `@utility` rules in production bundles.
 
 ### What the Candidate Manually Fixed
-1. **Dependency Installation**: Manually executed `npm install axios jsonwebtoken bcryptjs` inside the backend.
-2. **Mongoose Hook Refactoring**: Fixed the password hashing pre-save hook in `Employee.js` to be a standard Promise-returning async function without the callback parameter.
-3. **Static API Imports**: Added `updateSeatStatus` to `api.js` and statically imported it in `SeatMap.jsx` to clean up all build-time warning messages.
-4. **Test Suite Idempotency**: Added pre-cleanup deletes in `test-apis.js` to clear stale documents from aborted runs.
+1. **Vite Downgrade**: Downgraded `vite` from v8 to v6 (`^6.0.0`) and the react plugin to v5 (`^5.0.0`) to restore compatibility.
+2. **Config Purge**: Deleted the legacy `postcss.config.js` and `tailwind.config.js` files, resolving build failures on Vercel.
+3. **Mongoose Hook Refactoring**: Fixed the password hashing pre-save hook in `Employee.js` to be a standard Promise-returning async function.
+4. **Static API Imports**: Added `updateSeatStatus` to `api.js` and statically imported it in `SeatMap.jsx` to clean up import warnings.
 
 ---
 
 ## 3. How Correctness was Verified
 
-1. **Security & Authorization Test Suite**: Executed `node test-apis.js` in the backend directory. Verified token validation, password matching, HR seat allocations, Admin releases, and duplicate blocker constraints.
-2. **Production Bundle Verification**: Ran `npm run build` inside `frontend/` to confirm that all refactored hooks compile successfully with zero Warnings or Errors.
-3. **Sandbox Cross-Login Runs**:
-   - Logged in as `amit@ethara.ai`. Verified that the Onboard buttons are hidden, table actions say "Read-Only", seat maps show tooltips but hide release buttons, and the unallocated pending joiners dashboard sidebar is completely hidden.
-   - Logged in as `hr@ethara.ai`. Verified that booking, releasing, and employee CRUD controls are fully visible and active.
-   - Logged in as `admin@ethara.ai`. Verified full CRUD, booking, and seat coordinate asset controls (Reserved/Maintenance/Available) are functional.
+1. **Production Build Compilation**: Ran `npm run build` using Vite 6. The compiler successfully resolved and expanded all Tailwind CSS v4 utility classes and variable mappings, completing with **zero warnings** or minification warnings.
+2. **Backend Integration Suite**: Executed `node test-apis.js` in the backend directory. Verified token validation, password matching, HR seat allocations, Admin releases, and duplicate blocker constraints.
+3. **Sandbox Cross-Login Runs**: Logged in as Admin, HR, and Employee to verify role-based layouts, and checked responsiveness locally on port `5173`.

@@ -113,7 +113,7 @@ export default function Dashboard({ user, setActiveTab, setQuickAllocationEmploy
         </div>
         <button 
           onClick={() => setActiveTab('ai')}
-          className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02]"
+          className="flex items-center gap-2 px-4 py-2.5 bg-linear-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white rounded-xl shadow-lg transition duration-200 transform hover:scale-[1.02]"
         >
           Ask AI Assistant
           <ChevronRight className="h-4 w-4" />
