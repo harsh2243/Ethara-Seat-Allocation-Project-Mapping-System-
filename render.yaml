@@ -12,7 +12,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
-        value: mongodb+srv://harshvardhanjmt1807:Harsh2005@cluster0.r2ci0uh.mongodb.net/?appName=Cluster0
+        value: mongodb+srv://harshvardhanjmt1807:Harsh2005@cluster0.r2ci0uh.mongodb.net/ethara_seat_allocation?retryWrites=true&w=majority
       - key: JWT_SECRET
         value: ethara_jwt_secret_token_secure_key_12345
       - key: GEMINI_API_KEY
